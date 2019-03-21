@@ -20,10 +20,9 @@ class TodoList(ListView):
     template_name = 'core/index.html'
 
     def get_queryset(self):
-        todo= Todo.objects.all().order_by('completed')
+        todo = Todo.objects.all().order_by('completed')
         todo = todo.order_by('id').reverse()
         return todo
-
 
 
 def completed(request, pk):

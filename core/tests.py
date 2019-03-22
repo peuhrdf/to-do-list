@@ -1,22 +1,21 @@
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from .models import Todo
 
 
 class TodoTestCase(TestCase):
     def setUp(self):
-        self.factory = RequestFactory()
         self.user = User.objects.create_user(
             username='teste', password='teste')
         self.user.save()
 
     def test_login(self):
-        # tentando logar
+        #tentando logar
         login = self.client.login(username='teste', password='teste')
         self.assertEquals(login, True)
 
-        # tentando acessando url após logar
+        #tentando acessando url após logar
         response = self.client.get(reverse('new_to_do'))
         self.assertEqual(response.status_code, 200)
 
